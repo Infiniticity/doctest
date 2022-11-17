@@ -31,7 +31,7 @@ jobs:
     # ===============================
     - name: Commit documentation changes
       run: |
-        git clone https://github.com/Infiniticity/doctest.git --branch main --single-branch main
+        git clone https://github.com/Infiniticity/doctest --branch main --single-branch main
         cp -r docs/_build/html/* main/
         git config --local user.email "79257339+Infiniticity@users.noreply.github.com"
         git config --local user.name "Omkaar"
