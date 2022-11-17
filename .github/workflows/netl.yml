@@ -20,8 +20,8 @@ jobs:
         git clone https://github.com/Infiniticity/doctest.git
         cd doctest
         pip install -r requirements.txt
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "79257339+Infiniticity@users.noreply.github.com"
+        git config --local user.name "Omkaar"
         sphinx-build -b html docs docs/_build
         git add .
         git commit -m "Update documentation" -a || true
