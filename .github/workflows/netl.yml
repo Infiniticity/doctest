@@ -25,10 +25,4 @@ jobs:
         sphinx-build -b html docs docs/_build
         git add .
         git commit -m "Update documentation" -a || true
-        
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: main
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-    # ===============================
+        git push
