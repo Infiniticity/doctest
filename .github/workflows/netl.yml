@@ -30,8 +30,7 @@ jobs:
     - name: Commit documentation changes
       run: |
         git clone https://github.com/Infiniticity/doctest.git
-        cp -r docs/_build/html/* main/
-        cd main
+        cd doctest
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
@@ -42,6 +41,5 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         branch: main
-        directory: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
     # ===============================
