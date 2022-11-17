@@ -1,16 +1,12 @@
-name: netlify
-
-on: [push]
+name: "sphinx docs"
+on: 
+- push
 
 jobs:
-  build:
+  docs:
     runs-on: ubuntu-latest
     steps:
-    - name: run netlify
-      run: |
-        pip install sphinx
-        sphinx-build . ./_build
-        git add .
-        git commit -am "initial commit"
-        git push origin main
-
+    - uses: actions/checkout@v3
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
