@@ -8,6 +8,9 @@ jobs:
     steps:
     - name: run netlify
       run: |
-        curl https://raw.githubusercontent.com/HangarOrg/sphinx-netlify-cicd/main/start.sh -o start.sh
-        chmod +x start.sh
-        ./start.sh
+        pip install sphinx
+        sphinx-build docs _build
+        git add .
+        git commit -am "initial commit"
+        git push origin main
+
