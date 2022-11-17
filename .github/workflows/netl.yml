@@ -16,6 +16,7 @@ jobs:
 
     - name: Commit documentation changes
       run: |
+        pip install sphinx
         git clone https://github.com/Infiniticity/doctest.git
         cd doctest
         git config --local user.email "action@github.com"
