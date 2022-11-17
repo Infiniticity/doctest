@@ -42,4 +42,4 @@ jobs:
       with:
         branch: main
         directory: main
-        github_token: ${{ secrets.TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
