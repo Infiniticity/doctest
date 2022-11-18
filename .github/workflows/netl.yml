@@ -13,16 +13,31 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     # Standard drop-in approach that should work for most people.
-
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        build-command: "sphinx-build -b html . _build"
+        docs-folder: "docs/"
+    # Great extra actions to compose with:
+    # Create an artifact of the html output.
+    - uses: actions/upload-artifact@v1
+      with:
+        name: DocumentationHTML
+        path: docs/_build/
+    # Publish built docs to gh-pages branch.
+    # ===============================
     - name: Commit documentation changes
       run: |
-        pip install sphinx
-        git clone https://github.com/Infiniticity/doctest.git
-        cd doctest
-        pip install -r requirements.txt
-        git config --local user.email "79257339+Infiniticity@users.noreply.github.com"
-        git config --local user.name "Infiniticity"
-        sphinx-build -b html docs docs/_build
+        git clone https://github.com/Infiniticity/doctest.git --branch main --single-branch main
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
         git add .
         git commit -m "Update documentation" -a || true
-        git push
+        # The above command will fail if no changes were present, so we ignore
+        # that.
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: main
+        directory: .
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # ===============================
